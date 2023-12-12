@@ -11,9 +11,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,9 +26,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.splashscreencompose.navigation.Screen
-import com.example.splashscreencompose.ui.theme.Purple40
+import com.example.splashscreencompose.ui.theme.SplashScreenComposeTheme
 import kotlinx.coroutines.delay
 
 @Composable
@@ -56,7 +56,7 @@ fun SplashScreen(alpha: Float) {
 
     Box(
         modifier = Modifier
-            .background(if (isSystemInDarkTheme()) Color.Black else Purple40)
+            .background(MaterialTheme.colorScheme.primary)
             .fillMaxSize()
             .alpha(alpha),
         contentAlignment = Alignment.Center
@@ -75,11 +75,23 @@ fun SplashScreen(alpha: Float) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreen(alpha = 1f)
+    SplashScreenComposeTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            SplashScreen(alpha = 1f)
+        }
+    }
 }
 
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun DarkSplashScreenPreview() {
-    SplashScreen(alpha = 1f)
+    SplashScreenComposeTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            SplashScreen(alpha = 1f)
+        }
+    }
 }
